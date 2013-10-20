@@ -20,4 +20,10 @@ class StaticPagesController < ApplicationController
   def about
   end
 
+  # "action" contact
+  #   it has a corresponding "view" called contact.html.erb
+  #     located at: app/views/static_pages/contact.html.erb
+  def contact
+  end
+
 end
