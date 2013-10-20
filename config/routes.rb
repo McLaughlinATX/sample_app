@@ -4,7 +4,11 @@ SampleApp::Application.routes.draw do
   get "static_pages/help"
   get "static_pages/about"
   get "static_pages/contact"
+
+
+  # For fun pages!!!
   get "static_pages/sean_of_the_dead"
+  get "static_pages/leadership"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
