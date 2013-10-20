@@ -26,4 +26,10 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+# "action" sean_of_the_dead
+  #   it has a corresponding "view" called sean_of_the_dead.html.erb
+  #     located at: app/views/static_pages/sean_of_the_dead.html.erb
+  def sean_of_the_dead
+  end
+
 end
