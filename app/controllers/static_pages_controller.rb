@@ -13,4 +13,11 @@ class StaticPagesController < ApplicationController
   #     located at: app/views/static_pages/help.html.erb
   def help
   end
+
+  # "action" about
+  #   it has a corresponding "view" called about.html.erb
+  #     located at: app/views/static_pages/about.html.erb
+  def about
+  end
+
 end
