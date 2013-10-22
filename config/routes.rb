@@ -1,10 +1,21 @@
 SampleApp::Application.routes.draw do
   
-  get "static_pages/home"
-  get "static_pages/help"
-  get "static_pages/about"
-  get "static_pages/contact"
+  get "users/new"
+  # old way to route to relative path pages
+  #get "static_pages/home"
+  #get "static_pages/help"
+  #get "static_pages/about"
+  #get "static_pages/contact"
 
+  # new way to route to pages
+  #   NOTE: match '/help' automatically creates named routes:
+  #         'help_path' ==> '/help'
+  #         'help_url'  ==> 'http://localhost:3000/about'
+  root  'static_pages#home'
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/help',    to: 'static_pages#help',    via: 'get'
+  match '/about',   to: 'static_pages#about',   via: 'get'
+  match '/contact', to: 'static_pages#contact', via: 'get'
 
   # For fun pages!!!
   get "static_pages/sean_of_the_dead"
