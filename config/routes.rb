@@ -1,6 +1,12 @@
 SampleApp::Application.routes.draw do
+
+  # get the REST-style URL to work
+  resources :users
+
+  # now that we are using the above, we no longer need 'get "users/new"'  
+  #get "users/new"
   
-  get "users/new"
+
   # old way to route to relative path pages
   #get "static_pages/home"
   #get "static_pages/help"
