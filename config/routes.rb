@@ -1,7 +1,9 @@
 SampleApp::Application.routes.draw do
 
   # get the REST-style URL to work
+  # -- the controller will/may want to define ACTIONs for these REST actions
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   # now that we are using the above, we no longer need 'get "users/new"'  
   #get "users/new"
@@ -19,6 +21,8 @@ SampleApp::Application.routes.draw do
   #         'help_url'  ==> 'http://localhost:3000/about'
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   # --- alternate format ---
 	#before_save { email.downcase! }
 
+	# remember the user's token before creating it in the model
+	before_create :create_remember_token
+
 	# NOTES:
 	# Model-level validations are the best way to ensure that 
 	# only valid data is saved into your database.	
@@ -23,5 +26,24 @@ class User < ActiveRecord::Base
 
 	# validate the password meets our minimum criteria
   validates :password, length: { minimum: 6 }
+
+
+  # "Static" method which generates a new token
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # "Static" method which encrypts the supplied token
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+
+  private
+
+  	# Create token, encrypt it, and assign it to remember_token
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 
 end

@@ -52,6 +52,7 @@ describe "User pages" do
     end
 
     describe "with valid information" do
+      
       before do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
@@ -63,14 +64,30 @@ describe "User pages" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
 
+      #describe "after saving the user" do
+      #  before { click_button submit }
+      #  let(:user) { User.find_by(email: 'user@example.com') }
+      #
+      #  it { should have_title(user.name) }
+      #  it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+      #end
+
       describe "after saving the user" do
         before { click_button submit }
         let(:user) { User.find_by(email: 'user@example.com') }
 
+        it { should have_link('Sign out') }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
-      end
 
+        describe "followed by signout" do
+          before { click_link "Sign out" }
+          it { should have_link('Sign in') }
+        end
+      
+      end # end describe "after saving the user"
+
+      
     end # end describe "with valid information"
     
   end # end describe "signup"
